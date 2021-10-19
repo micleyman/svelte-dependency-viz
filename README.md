@@ -1,0 +1,3 @@
+```bash
+yarn && yarn dev
+```
