@@ -19,14 +19,19 @@
       return acc;
     }, []);
 
+  // This will recursively construct levels until the last level of nodes has no more
+  // edges for which those nodes are not the source
   const addNodeLevel = (level: Node[], allLevels = []) => {
     const newLevel = level.reduce((acc, node) => {
       const targets = findTargetsForNode(node.id);
-      return [...new Set(acc.concat(targets))];
+
+      return [...acc.concat(targets)];
     }, []);
 
     if (newLevel.length === 0) return allLevels;
-    return addNodeLevel(newLevel, [...allLevels, newLevel]);
+    // A node can have multiple source nodes, which may cause duplicates when
+    // getting all targets for a node - so we need to deduplicate the level
+    return addNodeLevel(newLevel, [...allLevels, [...new Set(newLevel)]]);
   };
 
   const nodeHasSource = (nodeId: NodeId) => !!edges.find((e) => e.target === nodeId);
@@ -65,11 +70,12 @@
 
   .sdv-level {
     display: flex;
-    margin-bottom: 60px;
+    flex-wrap: wrap;
   }
 
   .sdv-level article {
     padding: 20px;
     border: 2px solid black;
+    margin: 60px 40px;
   }
 </style>
