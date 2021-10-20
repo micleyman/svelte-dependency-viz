@@ -1,6 +1,8 @@
 import type { PathCoordinate } from './types';
 
-const drawTopDown = (start: PathCoordinate, end: PathCoordinate) => {
+type Draw = (start: PathCoordinate, end: PathCoordinate) => string;
+
+const drawTopDown: Draw = (start, end) => {
   const halfDeltaY = (end.y - start.y) / 2;
   const dx1 = start.x;
   const dy1 = start.y + halfDeltaY;
@@ -10,7 +12,7 @@ const drawTopDown = (start: PathCoordinate, end: PathCoordinate) => {
   return `M ${start.x}, ${start.y} C ${dx1}, ${dy1} ${dx2}, ${dy2} ${end.x}, ${end.y}`;
 };
 
-const drawLeft = (start: PathCoordinate, end: PathCoordinate) => {
+const drawLeft: Draw = (start, end) => {
   const deltaX = start.x - end.x;
   const deltaY = end.y - start.y;
   const dx1 = start.x - deltaX * 0.5;
@@ -21,7 +23,7 @@ const drawLeft = (start: PathCoordinate, end: PathCoordinate) => {
   return `M ${start.x}, ${start.y} C ${dx1}, ${dy1} ${dx2}, ${dy2} ${end.x}, ${end.y}`;
 };
 
-const drawRight = (start: PathCoordinate, end: PathCoordinate) => {
+const drawRight: Draw = (start, end) => {
   const deltaX = end.x - start.x;
   const deltaY = end.y - start.y;
   const dx1 = start.x + deltaX * 0.5;
@@ -32,7 +34,7 @@ const drawRight = (start: PathCoordinate, end: PathCoordinate) => {
   return `M ${start.x}, ${start.y} C ${dx1}, ${dy1} ${dx2}, ${dy2} ${end.x}, ${end.y}`;
 };
 
-const drawCenterRight = (start: PathCoordinate, end: PathCoordinate) => {
+const drawCenterRight: Draw = (start, end) => {
   const deltaX = Math.abs(start.x - end.x);
   const halfDeltaY = (end.y - start.y) / 2;
   const dx1 = start.x + deltaX * 0.5;
@@ -43,7 +45,7 @@ const drawCenterRight = (start: PathCoordinate, end: PathCoordinate) => {
   return `M ${start.x}, ${start.y} C ${dx1}, ${dy1} ${dx2}, ${dy2} ${end.x}, ${end.y}`;
 };
 
-const drawCenterLeft = (start: PathCoordinate, end: PathCoordinate) => {
+const drawCenterLeft: Draw = (start, end) => {
   const deltaX = Math.abs(start.x - end.x);
   const halfDeltaY = (end.y - start.y) / 2;
   const dx1 = start.x - deltaX * 0.5;
