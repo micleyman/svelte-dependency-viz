@@ -1,6 +1,6 @@
-import App from '../src/App.svelte';
-import nodes from './nodes.json';
-import edges from './edges.json';
+import App from './App.svelte';
+import nodes from '../nodes.json';
+import edges from '../edges.json';
 
 const app = new App({
   target: document.body,

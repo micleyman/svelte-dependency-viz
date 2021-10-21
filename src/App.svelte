@@ -2,6 +2,7 @@
   import { createLevels } from './graph';
   import type { Node, Edge, NodeId } from './graph';
   import Path from './Path.svelte';
+  import NodeElement from './Node.svelte';
 
   export let nodes: Node[];
   export let edges: Edge[];
@@ -12,7 +13,6 @@
   let nodeElements: MapOfNodes = {};
 
   let container: HTMLElement;
-
   $: levelsOfNodes = createLevels(nodes, edges);
 </script>
 
@@ -20,9 +20,13 @@
   {#each levelsOfNodes as level}
     <div class="dgv-level">
       {#each level as node}
-        <article data-id="dgv-node" bind:this={nodeElements[node.id]}>
-          {node.name}
-        </article>
+        <div class="dgv-node" bind:this={nodeElements[node.id]}>
+          {#if $$slots.default}
+            <slot nodeId={node.id} nodeName={node.name} rest={{ ...node }} />
+          {:else}
+            <NodeElement nodeName={node.name} />
+          {/if}
+        </div>
       {/each}
     </div>
   {/each}
@@ -50,11 +54,8 @@
     flex-wrap: wrap;
   }
 
-  .dgv-level article {
+  .dgv-node {
     --dgv-node-margin: 60px;
-    padding: 20px;
-    border: 2px solid #000;
     margin: var(--dgv-node-margin);
-    background-color: #fff;
   }
 </style>
