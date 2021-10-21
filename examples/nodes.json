@@ -1,0 +1,46 @@
+[
+  {
+    "id": 1,
+    "name": "Functions"
+  },
+  {
+    "id": 2,
+    "name": "Enums Basics"
+  },
+  {
+    "id": 3,
+    "name": "Floating Point Numbers"
+  },
+  {
+    "id": 4,
+    "name": "Integers"
+  },
+  {
+    "id": 5,
+    "name": "Structs"
+  },
+  {
+    "id": 6,
+    "name": "vec! macro"
+  },
+  {
+    "id": 7,
+    "name": "Destructuring"
+  },
+  {
+    "id": 8,
+    "name": "Tuples"
+  },
+  {
+    "id": 9,
+    "name": "Option"
+  },
+  {
+    "id": 10,
+    "name": "Entry API"
+  },
+  {
+    "id": 11,
+    "name": "Vector as a Stack"
+  }
+]
