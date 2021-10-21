@@ -1,5 +1,12 @@
 import sveltePreprocess from 'svelte-preprocess';
+import adapter from '@sveltejs/adapter-static';
 
 export default {
-  preprocess: [sveltePreprocess({})]
+  preprocess: [sveltePreprocess({})],
+  kit: {
+    adapter: {
+      adapt: adapter()
+    },
+    target: '#svelte'
+  }
 };
