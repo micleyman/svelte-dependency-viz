@@ -1,9 +1,9 @@
 {
   "compilerOptions": {
     "moduleResolution": "node",
-		"module": "es2020",
-		"lib": ["es2020", "DOM"],
-		"target": "es2019",
+    "module": "es2020",
+    "lib": ["es2020", "DOM"],
+    "target": "es2019",
     /**
      * svelte-preprocess cannot figure out whether you have
      * a value or a type, so tell TypeScript to enforce using
@@ -34,5 +34,10 @@
    * Use globals.d.ts instead of compilerOptions.types
    * to avoid limiting type declarations.
    */
-   "include": ["src/**/*.d.ts", "src/**/*.js", "{src,examples}/**/*.ts", "{src,examples}/**/*.svelte"]
-  }
+  "include": [
+    "src/**/*.d.ts",
+    "src/**/*.js",
+    "{src,examples}/**/*.ts",
+    "{src,examples}/**/*.svelte"
+  ]
+}
