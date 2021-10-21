@@ -7,8 +7,6 @@ In essence, a skill tree or progression map is just a graph in which each transi
 
 ## Use
 
-The resulting Graph does not use `window` or `document` values, and will base itself on the width of whatever parent container you define.
-
 ```bash
 npm install --save-dev svelte-dependency-viz
 ```
@@ -58,9 +56,12 @@ Result:
 
 
 
+**Note**: The resulting Graph does not use `window` or `document` values, and will base itself on the width of whatever parent container you define. Repositioning the paths on resize uses a [`ResizeObserver`](https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserver), so if you need IE11 support, you'll need to polyfill it.
+
+
 ### Customizing
 
-Note that you can supply a custom Node instead of the generic default node ([examples](https://github.com/MicLeey/svelte-dependency-viz/tree/main/examples))
+You can supply a custom Node instead of the generic default node ([examples](https://github.com/MicLeey/svelte-dependency-viz/tree/main/examples))
 
 Any additional data you have defined on the node object, will be passed in as `rest` to your custom component. With this you can do contextual styling, such as a green background when a certain node has been completed, animations, or hover styles and tooltips.
 
