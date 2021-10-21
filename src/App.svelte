@@ -16,11 +16,11 @@
   $: levelsOfNodes = createLevels(nodes, edges);
 </script>
 
-<div class="dgv-container" bind:this={container}>
+<div class="sdv-container" bind:this={container}>
   {#each levelsOfNodes as level}
-    <div class="dgv-level">
+    <div class="sdv-level">
       {#each level as node}
-        <div class="dgv-node" bind:this={nodeElements[node.id]}>
+        <div class="sdv-node" bind:this={nodeElements[node.id]}>
           {#if $$slots.default}
             <slot nodeId={node.id} nodeName={node.name} rest={{ ...node }} />
           {:else}
@@ -39,22 +39,22 @@
 </div>
 
 <style>
-  .dgv-container {
+  .sdv-container {
     position: relative;
   }
 
-  .dgv-container .dgv-level {
+  .sdv-container .sdv-level {
     width: 100%;
     display: flex;
     justify-content: space-evenly;
   }
 
-  .dgv-level {
+  .sdv-level {
     display: flex;
     flex-wrap: wrap;
   }
 
-  .dgv-node {
+  .sdv-node {
     --dgv-node-margin: 60px;
     margin: var(--dgv-node-margin);
   }
