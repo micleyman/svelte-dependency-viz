@@ -26,6 +26,7 @@ interface Edge {
   target: NodeId;
 }
 ```
+The package will assume that any node that isn't a target of another node, is a root node (they will be on level 1).
 
 You can use it in your Svelte app like this:
 
