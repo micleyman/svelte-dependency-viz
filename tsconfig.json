@@ -28,7 +28,11 @@
      */
     "allowJs": true,
     "checkJs": true,
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "paths": {
+			"$lib": ["src/lib"],
+			"$lib/*": ["src/lib/*"]
+		}
   },
   /**
    * Use globals.d.ts instead of compilerOptions.types
