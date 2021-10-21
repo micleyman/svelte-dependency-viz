@@ -1,4 +1,4 @@
-import type { PathCoordinate } from './types';
+import type { PathCoordinate, PathDirection } from './types';
 
 type Draw = (start: PathCoordinate, end: PathCoordinate) => string;
 
@@ -56,10 +56,16 @@ const drawCenterLeft: Draw = (start, end) => {
   return `M ${start.x}, ${start.y} C ${dx1}, ${dy1} ${dx2}, ${dy2} ${end.x}, ${end.y}`;
 };
 
-export const directionMap = {
+const directionMap = {
   left: drawLeft,
   right: drawRight,
   'center-left': drawCenterLeft,
   'center-right': drawCenterRight,
   center: drawTopDown
 };
+
+export const computeCurve = (
+  start: PathCoordinate,
+  end: PathCoordinate,
+  direction: PathDirection
+): string => directionMap[direction](start, end);

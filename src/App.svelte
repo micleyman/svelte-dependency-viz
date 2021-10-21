@@ -1,40 +1,55 @@
 <script lang="ts">
   import { createLevels } from './graph';
-  import type { Node, Edge } from './graph';
+  import type { Node, Edge, NodeId } from './graph';
+  import Path from './Path.svelte';
 
   export let nodes: Node[];
   export let edges: Edge[];
 
+  interface MapOfNodes {
+    [key: NodeId]: HTMLElement;
+  }
+  let nodeElements: MapOfNodes = {};
+
   $: levelsOfNodes = createLevels(nodes, edges);
 </script>
 
-<div class="sdv-container">
+<div class="dgv-container">
   {#each levelsOfNodes as level}
-    <div class="sdv-level">
+    <div class="dgv-level">
       {#each level as node}
-        <article>
+        <article data-id="dgv-node" bind:this={nodeElements[node.id]}>
           {node.name}
         </article>
       {/each}
     </div>
   {/each}
+
+  {#each edges as edge}
+    <Path from={nodeElements[edge.source]} to={nodeElements[edge.target]} />
+  {/each}
 </div>
 
 <style>
-  .sdv-container .sdv-level {
+  .dgv-container {
+    position: relative;
+  }
+
+  .dgv-container .dgv-level {
     width: 100%;
     display: flex;
     justify-content: space-evenly;
   }
 
-  .sdv-level {
+  .dgv-level {
     display: flex;
     flex-wrap: wrap;
   }
 
-  .sdv-level article {
+  .dgv-level article {
+    --dgv-node-margin: 60px;
     padding: 20px;
     border: 2px solid black;
-    margin: 60px 40px;
+    margin: var(--dgv-node-margin);
   }
 </style>
