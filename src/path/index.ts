@@ -86,7 +86,7 @@ export const computePathProperties = (from: HTMLElement, to: HTMLElement): PathP
   const direction = determinePathDirection(from, to);
   const startCoordinate = getPathStartCoordinate(from, direction);
   const endCoordinate = getPathEndCoordinate(to);
-  const radius = 5;
+  const radius = 4;
   const strokeWidth = 3;
   const margin = parseInt(window.getComputedStyle(from).margin, 10) / 2;
 
