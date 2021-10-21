@@ -1,9 +1,20 @@
 <script lang="ts">
+  import { onMount } from 'svelte';
   import { computePathProperties } from './path';
   import type { PathProperties } from './path/types';
 
   export let from: HTMLElement;
   export let to: HTMLElement;
+  export let container: HTMLElement;
+
+  // When container dimensions change, edge properties must be recomputed
+  onMount(() => {
+    // TODO: Should debounce, this computation is expensive
+    const resizeObserver = new ResizeObserver(() => {
+      pathProps = { ...computePathProperties(from, to) };
+    });
+    resizeObserver.observe(container);
+  });
 
   let pathProps: PathProperties = null;
   $: if (from && to) {
