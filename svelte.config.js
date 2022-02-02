@@ -4,9 +4,7 @@ import adapter from '@sveltejs/adapter-static';
 export default {
   preprocess: [sveltePreprocess({})],
   kit: {
-    adapter: {
-      adapt: adapter()
-    },
+    adapter: adapter({}),
     target: '#svelte'
   }
 };
