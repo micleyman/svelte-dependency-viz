@@ -5,6 +5,11 @@ export default {
   preprocess: [sveltePreprocess({})],
   kit: {
     adapter: adapter({}),
-    target: '#svelte'
+    target: '#svelte',
+    vite: {
+      server: {
+        fs: { allow: ['./examples'] }
+      }
+    }
   }
 };
